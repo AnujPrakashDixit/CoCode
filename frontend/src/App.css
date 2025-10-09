@@ -7,7 +7,8 @@
   --dark-charcoal: #1F1F1F;
   --bright-teal: #1ECE9A;
   --dark-teal: #199F78;
-  --off-white: #F1F2F6; /* Added for text readability */
+  --off-white: #F1F2F6;
+  /* Added for text readability */
 
   --background: var(--true-black);
   --surface: var(--dark-charcoal);
@@ -35,7 +36,7 @@
 body {
   font-family: var(--font-body);
   color: var(--text);
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 /* --- Login Page Styles --- */
@@ -50,15 +51,24 @@ body {
 }
 
 @keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .join-form {
   background: var(--form-bg-alpha);
-  backdrop-filter: blur(10px); 
-  border: 1px solid rgba(241, 242, 246, 0.2); /* White border */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(241, 242, 246, 0.2);
+  /* White border */
   padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -68,50 +78,69 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-h1 { /* Applies to login H1 */
+h1 {
+  /* Applies to login H1 */
   font-family: var(--font-code);
   font-size: 2.5rem;
   color: var(--text);
   margin-bottom: 2rem;
-  display: inline-block; 
+  display: inline-block;
   position: relative;
 }
 
-h1::after { /* Blinking cursor for login H1 */
+h1::after {
+  /* Blinking cursor for login H1 */
   content: '';
   position: absolute;
-  top: 5px; 
-  right: -18px; 
+  top: 5px;
+  right: -18px;
   width: 10px;
   height: 2.5rem;
-  background: var(--primary); /* Teal cursor */
+  background: var(--primary);
+  /* Teal cursor */
   animation: blink 1s step-end infinite;
 }
 
 @keyframes blink {
-  from, to { background: transparent; }
-  50% { background: var(--primary); }
+
+  from,
+  to {
+    background: transparent;
+  }
+
+  50% {
+    background: var(--primary);
+  }
 }
 
-input { /* Applies to login inputs */
+input {
+  /* Applies to login inputs */
   width: 100%;
   padding: 1rem;
   margin-bottom: 1.5rem;
   font-size: 1rem;
   font-family: var(--font-body);
-  background-color: rgba(0, 0, 0, 0.4); /* Darker input background */
-  border: 1px solid var(--surface); 
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Darker input background */
+  border: 1px solid var(--surface);
   border-radius: 6px;
   color: var(--text);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input::placeholder {
-  color: var(--subtle-text); 
+  color: var(--subtle-text);
 }
 
 input:focus {
@@ -120,11 +149,14 @@ input:focus {
   box-shadow: 0 0 0 3px var(--focus-glow-alpha);
 }
 
-button { /* Applies to login button */
+button {
+  /* Applies to login button */
   width: 100%;
   padding: 1rem;
-  background-color: var(--primary); /* Teal button */
-  color: var(--background);        /* Black text on button */
+  background-color: var(--primary);
+  /* Teal button */
+  color: var(--background);
+  /* Black text on button */
   font-weight: bold;
   font-size: 1rem;
   border: none;
@@ -134,7 +166,8 @@ button { /* Applies to login button */
 }
 
 button:hover {
-  background-color: var(--primary-hover); /* Darker teal on hover */
+  background-color: var(--primary-hover);
+  /* Darker teal on hover */
   transform: translateY(-3px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -148,20 +181,21 @@ button:active {
 .editor-container {
   display: flex;
   height: 100vh;
-  background-color: var(--background); 
-  font-family: var(--font-body); 
-  color: var(--text); 
+  background-color: var(--background);
+  font-family: var(--font-body);
+  color: var(--text);
 }
 
 .editor-container .sidebar {
-  width: 280px; 
+  width: 280px;
   padding: 1.8rem 1.5rem;
   background: var(--form-bg-alpha);
-  backdrop-filter: blur(8px); 
-  border-right: 1px solid rgba(241, 242, 246, 0.1); /* Subtle white border */
-  display: flex; 
+  backdrop-filter: blur(8px);
+  border-right: 1px solid rgba(241, 242, 246, 0.1);
+  /* Subtle white border */
+  display: flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
@@ -169,53 +203,56 @@ button:active {
 
 /* Sidebar Header - "Code Room" text */
 .editor-container .sidebar .sidebar-header {
-    font-family: var(--font-code);
-    font-size: 1.8rem;
-    color: var(--text);
-    margin-bottom: 2rem;
-    text-align: center;
-    position: relative;
+  font-family: var(--font-code);
+  font-size: 1.8rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
 }
+
 .editor-container .sidebar .sidebar-header::after {
-    content: '';
-    position: absolute;
-    top: 5px; 
-    right: 30px; 
-    width: 8px;
-    height: 1.8rem;
-    background: var(--primary); /* Teal cursor */
-    animation: blink 1s step-end infinite;
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  width: 8px;
+  height: 1.8rem;
+  background: var(--primary);
+  /* Teal cursor */
+  animation: blink 1s step-end infinite;
 }
 
 
 .editor-container .sidebar .room-info {
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  text-align: center; 
-  margin-bottom: 2rem; 
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-top: 1px solid rgba(241, 242, 246, 0.1); 
+  border-top: 1px solid rgba(241, 242, 246, 0.1);
   padding-top: 1.5rem;
 }
 
 .editor-container .sidebar .room-info h2 {
-  font-family: var(--font-code); 
-  font-size: 1.4rem; 
-  color: var(--text); 
-  margin-bottom: 0.8rem; 
+  font-family: var(--font-code);
+  font-size: 1.4rem;
+  color: var(--text);
+  margin-bottom: 0.8rem;
   letter-spacing: 1px;
 }
 
 .editor-container .sidebar .room-info .copy-button {
   padding: .7rem 1.5rem;
-  background-color: var(--primary); /* Teal copy button */
-  color: var(--background); 
+  background-color: var(--primary);
+  /* Teal copy button */
+  color: var(--background);
   border: none;
-  border-radius: 6px; 
+  border-radius: 6px;
   cursor: pointer;
   font-size: 0.95rem;
-  font-weight: bold; 
+  font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
@@ -225,15 +262,23 @@ button:active {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
+
   &:active {
     transform: translateY(0);
   }
 }
 
-.editor-container .sidebar h3 { /* "Users in Room" title */
+.copy-sucess {
+  margin-left: .5rem;
+  color: green;
+  font-size: 0.8rem;
+}
+
+.editor-container .sidebar h3 {
+  /* "Users in Room" title */
   margin-top: 1.5rem;
   margin-bottom: 1rem;
-  font-size: 1.1rem; 
+  font-size: 1.1rem;
   color: var(--text);
   text-align: left;
   padding-left: 0.5rem;
@@ -243,14 +288,15 @@ button:active {
 
 .editor-container .sidebar ul {
   list-style: none;
-  padding: 0; 
+  padding: 0;
   margin: 0;
 }
 
 .editor-container .sidebar ul li {
   padding: .7rem 1rem;
   font-size: 0.95rem;
-  background: rgba(31, 31, 31, 0.5); /* Semi-transparent charcoal */
+  background: rgba(31, 31, 31, 0.5);
+  /* Semi-transparent charcoal */
   margin-top: 10px;
   border-radius: 5px;
   display: flex;
@@ -262,15 +308,17 @@ button:active {
 }
 
 .editor-container .sidebar ul li.active-user {
-    border-left-color: var(--accent); /* Highlight active user with dark teal */
-    background-color: rgba(31, 31, 31, 0.7);
-    font-weight: bold;
+  border-left-color: var(--accent);
+  /* Highlight active user with dark teal */
+  background-color: rgba(31, 31, 31, 0.7);
+  font-weight: bold;
 }
+
 .editor-container .sidebar ul li::before {
-    content: '👤';
-    margin-right: 5px;
-    font-size: 1.1em;
-    opacity: 0.7;
+  content: '👤';
+  margin-right: 5px;
+  font-size: 1.1em;
+  opacity: 0.7;
 }
 
 .editor-container .sidebar .typing-indicator {
@@ -283,23 +331,23 @@ button:active {
 }
 
 .editor-container .sidebar .language-selector {
-  margin-top: 1.5rem; 
+  margin-top: 1.5rem;
   width: 100%;
   padding: .8rem;
   background-color: var(--surface);
   color: var(--text);
-  border: 1px solid var(--mid-tone); 
+  border: 1px solid var(--mid-tone);
   border-radius: 6px;
   font-size: 0.95rem;
   cursor: pointer;
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F1F2F6%22%20d%3D%22M287%2C114.7L154.5%2C247.2c-2.3%2C2.3-5.3%2C3.5-8.3%2C3.5s-6.1-1.2-8.3-3.5L5.4%2C114.7c-4.5-4.5-4.5-11.7%2C0-16.2c4.5-4.5%2C11.7-4.5%2C16.2%2C0l124.6%2C124.6l124.6-124.6c4.5-4.5%2C11.7-4.5%2C16.2%2C0C291.5%2C103%2C291.5%2C110.2%2C287%2C114.7z%22/%3E%3C/svg%3E'); 
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F1F2F6%22%20d%3D%22M287%2C114.7L154.5%2C247.2c-2.3%2C2.3-5.3%2C3.5-8.3%2C3.5s-6.1-1.2-8.3-3.5L5.4%2C114.7c-4.5-4.5-4.5-11.7%2C0-16.2c4.5-4.5%2C11.7-4.5%2C16.2%2C0l124.6%2C124.6l124.6-124.6c4.5-4.5%2C11.7-4.5%2C16.2%2C0C291.5%2C103%2C291.5%2C110.2%2C287%2C114.7z%22/%3E%3C/svg%3E');
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 12px auto;
-  padding-right: 30px; 
+  padding-right: 30px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
@@ -315,21 +363,23 @@ button:active {
   margin-top: 2.5rem;
   width: 100%;
   padding: 1rem;
-  background-color: var(--danger); 
-  color: #FFFFFF; /* White text on danger button for max contrast */
+  background-color: var(--danger);
+  color: #FFFFFF;
+  /* White text on danger button for max contrast */
   border: none;
   border-radius: 6px;
-  font-size: 1rem; 
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   font-weight: bold;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 
   &:hover {
-    background-color: var(--danger-hover); 
+    background-color: var(--danger-hover);
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
   }
+
   &:active {
     transform: translateY(-1px);
   }
@@ -337,7 +387,7 @@ button:active {
 
 .editor-container .editor-wrapper {
   flex-grow: 1;
-  background-color: var(--background); 
+  background-color: var(--background);
 }
 
 /* Glass Shine Effect for Sidebar */
@@ -348,12 +398,11 @@ button:active {
   left: -100%;
   width: 50px;
   height: 200%;
-  background: linear-gradient(
-    to bottom,
-    rgba(241, 242, 246, 0),
-    rgba(241, 242, 246, 0.15), /* Changed from 0.30 to 0.15 for 30% opacity on the peak */
-    rgba(241, 242, 246, 0)
-  ); 
+  background: linear-gradient(to bottom,
+      rgba(241, 242, 246, 0),
+      rgba(241, 242, 246, 0.15),
+      /* Changed from 0.30 to 0.15 for 30% opacity on the peak */
+      rgba(241, 242, 246, 0));
 }
 
 @keyframes shine-effect {
