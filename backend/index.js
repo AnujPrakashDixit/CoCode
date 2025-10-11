@@ -9,7 +9,7 @@ import axios from 'axios';
 const app = express();
 const server = http.createServer(app);
 
-const url = `https://render-hosting-se2b.onrender.com`;
+const url = `https://co-code-real-time-collaborative-ide.onrender.com`;
 const interval = 30000;
 
 function reloadWebsite() {
