@@ -410,3 +410,84 @@ button:active {
     left: 150%;
   }
 }
+
+.btn-container{
+  display: flex;
+  justify-content: end;
+   background-color: rgba(31, 31, 31, 0.8);
+}
+
+.run-btn {
+  margin-right: 5px;
+  margin-top: 10px;
+  width: 10%;
+  padding: 0.9rem;
+  background-color: var(--primary);
+  color: var(--background);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(30, 206, 154, 0.3);
+  font-family: var(--font-body);
+}
+
+.run-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(30, 206, 154, 0.4);
+}
+
+.run-btn:active {
+  transform: translateY(-1px);
+}
+
+/* --- Output Console Styling --- */
+.output-console {
+  height: 220px !important;
+  width: 100% !important;
+  margin-top: 10px;
+  padding: 1rem;
+  font-size: 0.95rem;
+  font-family: var(--font-code);
+  color: var(--text);
+  background-color: rgba(31, 31, 31, 0.8);
+  border: 1px solid rgba(241, 242, 246, 0.15);
+  border-left: 4px solid var(--primary);
+  border-radius: 8px;
+  height: 200px;
+  resize: none;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* When hovered, give it a subtle teal glow */
+.output-console:hover {
+  box-shadow: inset 0 0 12px rgba(30, 206, 154, 0.25);
+  border-left-color: var(--primary-hover);
+}
+
+/* Focused state – glowing teal border */
+.output-console:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--focus-glow-alpha);
+}
+
+/* Custom scrollbar styling */
+.output-console::-webkit-scrollbar {
+  width: 8px;
+}
+
+.output-console::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 4px;
+}
+
+.output-console::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-hover);
+}
