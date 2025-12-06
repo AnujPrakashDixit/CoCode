@@ -8,25 +8,21 @@ import axios from 'axios';
 const app = express();
 const server = http.createServer(app);
 
-const port = process.env.PORT || 5000;
-
-// Self-ping URL
-const url = `http://localhost:${port}`;
+const url = `https://co-code-real-time-collaborative-ide.onrender.com`;
 const interval = 30000;
 
-// Root route (IMPORTANT)
-app.get("/", (req, res) => {
-  res.send("Server is active");
-});
-
 function reloadWebsite() {
-  axios.get(url)
-    .then(() => console.log("Server pinged"))
-    .catch(error => console.error("Ping error:", error.message));
+  axios
+    .get(url)
+    .then((response) => {
+      console.log("website reloded");
+    })
+    .catch((error) => {
+      console.error(`Error : ${error.message}`);
+    });
 }
 
 setInterval(reloadWebsite, interval);
-
 
 const io = new Server(server, {
   cors: { origin: "*" },
@@ -114,12 +110,18 @@ io.on("connection", (socket) => {
   });
 });
 
+// ... socket code ...
+
 const __dirname = path.resolve();
 
-app.use(history());
+// This middleware redirects all navigation (like /room/123) to index.html
+app.use(history()); 
 
-app.use(express.static(path.join(__dirname, "frontend", "dist", "index.html")));
+// This serves the static files (CSS, JS, Images) from the React build folder
+app.use(express.static(path.join(__dirname, "frontend", "dist")));
 
+// If you have the keep-alive script (reloadWebsite), 
+// update the URL to your Render URL after you deploy.
 
-
+const port = process.env.PORT || 5000;
 server.listen(port, () => console.log("Server running on port", port));
