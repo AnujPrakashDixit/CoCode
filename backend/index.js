@@ -8,21 +8,25 @@ import axios from 'axios';
 const app = express();
 const server = http.createServer(app);
 
-const url = `https://co-code-real-time-collaborative-ide.onrender.com`;
+const port = process.env.PORT || 5000;
+
+// Self-ping URL
+const url = `http://localhost:${port}`;
 const interval = 30000;
 
+// Root route (IMPORTANT)
+app.get("/", (req, res) => {
+  res.send("Server is active");
+});
+
 function reloadWebsite() {
-  axios
-    .get(url)
-    .then((response) => {
-      console.log("website reloded");
-    })
-    .catch((error) => {
-      console.error(`Error : ${error.message}`);
-    });
+  axios.get(url)
+    .then(() => console.log("Server pinged"))
+    .catch(error => console.error("Ping error:", error.message));
 }
 
 setInterval(reloadWebsite, interval);
+
 
 const io = new Server(server, {
   cors: { origin: "*" },
@@ -115,8 +119,6 @@ const __dirname = path.resolve();
 app.use(history());
 
 app.use(express.static(path.join(__dirname, "frontend", "dist", "index.html")));
-
-const port = process.env.PORT || 5000;
 
 
 
