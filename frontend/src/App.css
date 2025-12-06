@@ -2,14 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Fira+Code:wght@400;700&display=swap');
 
 :root {
-  /* Black & Teal Palette */
   --true-black: #000000;
   --dark-charcoal: #1F1F1F;
   --bright-teal: #1ECE9A;
   --dark-teal: #199F78;
   --off-white: #F1F2F6;
-  /* Added for text readability */
-
   --background: var(--true-black);
   --surface: var(--dark-charcoal);
   --form-bg-alpha: rgba(31, 31, 31, 0.7);
@@ -26,7 +23,6 @@
   --font-code: "Fira Code", monospace;
 }
 
-/* --- General Resets & Body Styling --- */
 * {
   margin: 0;
   padding: 0;
@@ -39,7 +35,7 @@ body {
   overflow: hidden;
 }
 
-/* --- Login Page Styles --- */
+/* --- Join/Login Styles --- */
 .join-container {
   display: flex;
   justify-content: center;
@@ -51,46 +47,23 @@ body {
 }
 
 @keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .join-form {
   background: var(--form-bg-alpha);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(241, 242, 246, 0.2);
-  /* White border */
   padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   text-align: center;
   width: 380px;
-  animation: fadeIn 0.8s ease-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-h1 {
-  /* Applies to login H1 */
+.join-form h1 {
   font-family: var(--font-code);
   font-size: 2.5rem;
   color: var(--text);
@@ -99,8 +72,7 @@ h1 {
   position: relative;
 }
 
-h1::after {
-  /* Blinking cursor for login H1 */
+.join-form h1::after {
   content: '';
   position: absolute;
   top: 5px;
@@ -108,76 +80,52 @@ h1::after {
   width: 10px;
   height: 2.5rem;
   background: var(--primary);
-  /* Teal cursor */
   animation: blink 1s step-end infinite;
 }
 
 @keyframes blink {
-
-  from,
-  to {
-    background: transparent;
-  }
-
-  50% {
-    background: var(--primary);
-  }
+  from, to { background: transparent; }
+  50% { background: var(--primary); }
 }
 
-input {
-  /* Applies to login inputs */
+.join-form input {
   width: 100%;
   padding: 1rem;
   margin-bottom: 1.5rem;
   font-size: 1rem;
   font-family: var(--font-body);
   background-color: rgba(0, 0, 0, 0.4);
-  /* Darker input background */
   border: 1px solid var(--surface);
   border-radius: 6px;
   color: var(--text);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input::placeholder {
-  color: var(--subtle-text);
-}
-
-input:focus {
+.join-form input:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px var(--focus-glow-alpha);
 }
 
-button {
-  /* Applies to login button */
+.join-form button {
   width: 100%;
   padding: 1rem;
   background-color: var(--primary);
-  /* Teal button */
   color: var(--background);
-  /* Black text on button */
   font-weight: bold;
   font-size: 1rem;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button:hover {
+.join-form button:hover {
   background-color: var(--primary-hover);
-  /* Darker teal on hover */
   transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-button:active {
-  transform: translateY(-1px);
-}
-
-
-/* --- EDITOR CONTAINER STYLING --- */
+/* --- EDITOR CONTAINER --- */
 .editor-container {
   display: flex;
   height: 100vh;
@@ -186,308 +134,265 @@ button:active {
   color: var(--text);
 }
 
+/* --- SIDEBAR --- */
 .editor-container .sidebar {
-  width: 280px;
-  padding: 1.8rem 1.5rem;
+  width: 300px; /* Slightly wider for chat */
+  padding: 1rem;
   background: var(--form-bg-alpha);
   backdrop-filter: blur(8px);
   border-right: 1px solid rgba(241, 242, 246, 0.1);
-  /* Subtle white border */
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: column; /* Stack elements */
+  /* Remove justify-content: space-between so we can control heights */
+  gap: 10px; 
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
 }
 
-/* Sidebar Header - "Code Room" text */
-.editor-container .sidebar .sidebar-header {
-  font-family: var(--font-code);
-  font-size: 1.8rem;
-  color: var(--text);
-  margin-bottom: 2rem;
+.room-info {
   text-align: center;
-  position: relative;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(241, 242, 246, 0.1);
 }
 
-.editor-container .sidebar .sidebar-header::after {
-  content: '';
-  position: absolute;
-  top: 5px;
-  right: 30px;
-  width: 8px;
-  height: 1.8rem;
-  background: var(--primary);
-  /* Teal cursor */
-  animation: blink 1s step-end infinite;
-}
-
-
-.editor-container .sidebar .room-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-top: 1px solid rgba(241, 242, 246, 0.1);
-  padding-top: 1.5rem;
-}
-
-.editor-container .sidebar .room-info h2 {
+.room-info h2 {
   font-family: var(--font-code);
-  font-size: 1.4rem;
-  color: var(--text);
-  margin-bottom: 0.8rem;
-  letter-spacing: 1px;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 
-.editor-container .sidebar .room-info .copy-button {
-  padding: .7rem 1.5rem;
+.copy-button {
+  padding: .5rem 1rem;
   background-color: var(--primary);
-  /* Teal copy button */
   color: var(--background);
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.95rem;
   font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
 
-  &:hover {
-    background-color: var(--primary-hover);
-    color: var(--background);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
+.copy-button:hover {
+  background-color: var(--primary-hover);
 }
 
 .copy-sucess {
-  margin-left: .5rem;
-  color: green;
+  display: block;
+  margin-top: 5px;
+  color: var(--primary);
   font-size: 0.8rem;
 }
 
-.editor-container .sidebar h3 {
-  /* "Users in Room" title */
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-  color: var(--text);
-  text-align: left;
-  padding-left: 0.5rem;
-  border-bottom: 1px solid rgba(241, 242, 246, 0.1);
-  padding-bottom: 0.5rem;
+/* Users List */
+.users-list-section {
+  flex-shrink: 0; 
+  max-height: 15vh; /* Limit height */
+  overflow-y: auto;
 }
 
-.editor-container .sidebar ul {
+.users-list-section h3 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: var(--subtle-text);
+}
+
+.sidebar ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
-.editor-container .sidebar ul li {
-  padding: .7rem 1rem;
-  font-size: 0.95rem;
+.sidebar ul li {
+  padding: 5px 10px;
+  font-size: 0.9rem;
   background: rgba(31, 31, 31, 0.5);
-  /* Semi-transparent charcoal */
-  margin-top: 10px;
-  border-radius: 5px;
+  margin-bottom: 5px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  border-left: 4px solid transparent;
-  transition: background-color 0.3s ease, border-left-color 0.3s ease;
-  color: var(--text);
 }
 
-.editor-container .sidebar ul li.active-user {
-  border-left-color: var(--accent);
-  /* Highlight active user with dark teal */
-  background-color: rgba(31, 31, 31, 0.7);
-  font-weight: bold;
-}
-
-.editor-container .sidebar ul li::before {
+.sidebar ul li::before {
   content: '👤';
   margin-right: 5px;
-  font-size: 1.1em;
-  opacity: 0.7;
+  font-size: 1em;
 }
 
-.editor-container .sidebar .typing-indicator {
-  margin-top: 1.5rem;
-  font-size: 0.85rem;
-  color: var(--subtle-text);
+.typing-indicator {
+  font-size: 0.8rem;
+  color: var(--primary);
   font-style: italic;
-  text-align: center;
-  padding-bottom: 1rem;
+  height: 20px; /* Preserve space */
 }
 
-.editor-container .sidebar .language-selector {
-  margin-top: 1.5rem;
+.language-selector {
   width: 100%;
-  padding: .8rem;
+  padding: 0.5rem;
   background-color: var(--surface);
   color: var(--text);
   border: 1px solid var(--mid-tone);
   border-radius: 6px;
-  font-size: 0.95rem;
   cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F1F2F6%22%20d%3D%22M287%2C114.7L154.5%2C247.2c-2.3%2C2.3-5.3%2C3.5-8.3%2C3.5s-6.1-1.2-8.3-3.5L5.4%2C114.7c-4.5-4.5-4.5-11.7%2C0-16.2c4.5-4.5%2C11.7-4.5%2C16.2%2C0l124.6%2C124.6l124.6-124.6c4.5-4.5%2C11.7-4.5%2C16.2%2C0C291.5%2C103%2C291.5%2C110.2%2C287%2C114.7z%22/%3E%3C/svg%3E');
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 12px auto;
-  padding-right: 30px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
-  &:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px var(--focus-glow-alpha);
-  }
+  margin-bottom: 10px;
 }
 
+/* --- NEW CHAT STYLES --- */
+.chat-container {
+  flex-grow: 1; /* Take remaining height */
+  display: flex;
+  flex-direction: column;
+  background: rgba(0,0,0,0.2);
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.05);
+  min-height: 0; /* Important for flex scrolling */
+}
 
-.editor-container .sidebar .leave-button {
-  margin-top: 2.5rem;
+.chat-container h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: var(--subtle-text);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 5px;
+}
+
+.chat-box {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding-right: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Custom Scrollbar for chat */
+.chat-box::-webkit-scrollbar { width: 5px; }
+.chat-box::-webkit-scrollbar-thumb { background: var(--mid-tone); border-radius: 3px; }
+
+.message-bubble {
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  max-width: 85%;
+  word-wrap: break-word;
+  position: relative;
+}
+
+.my-message {
+  align-self: flex-end;
+  background-color: var(--primary);
+  color: var(--background);
+  border-bottom-right-radius: 0;
+}
+
+.other-message {
+  align-self: flex-start;
+  background-color: var(--surface);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text);
+  border-bottom-left-radius: 0;
+}
+
+.chat-username {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-bottom: 2px;
+  opacity: 0.8;
+}
+
+.chat-time {
+  display: block;
+  font-size: 0.65rem;
+  margin-top: 4px;
+  text-align: right;
+  opacity: 0.6;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 5px;
+}
+
+.chat-input-area input {
+  flex-grow: 1;
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.chat-input-area input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.chat-input-area button {
+  padding: 0 12px;
+  background: var(--primary);
+  color: black;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.leave-button {
   width: 100%;
-  padding: 1rem;
+  padding: 0.8rem;
   background-color: var(--danger);
-  color: #FFFFFF;
-  /* White text on danger button for max contrast */
+  color: white;
   border: none;
   border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
   font-weight: bold;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-
-  &:hover {
-    background-color: var(--danger-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-  }
-
-  &:active {
-    transform: translateY(-1px);
-  }
+  cursor: pointer;
+  margin-top: auto; /* Push to bottom if space exists */
 }
 
-.editor-container .editor-wrapper {
+/* --- RIGHT SIDE EDITOR --- */
+.editor-wrapper {
   flex-grow: 1;
   background-color: var(--background);
-}
-
-/* Glass Shine Effect for Sidebar */
-.editor-container .sidebar::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -100%;
-  width: 50px;
-  height: 200%;
-  background: linear-gradient(to bottom,
-      rgba(241, 242, 246, 0),
-      rgba(241, 242, 246, 0.15),
-      /* Changed from 0.30 to 0.15 for 30% opacity on the peak */
-      rgba(241, 242, 246, 0));
-}
-
-@keyframes shine-effect {
-  to {
-    left: 150%;
-  }
-}
-
-.btn-container{
   display: flex;
-  justify-content: end;
-   background-color: rgba(31, 31, 31, 0.8);
+  flex-direction: column;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgba(31, 31, 31, 0.8);
+  padding: 5px 15px;
 }
 
 .run-btn {
-  margin-right: 5px;
-  margin-top: 10px;
-  width: 10%;
-  padding: 0.9rem;
+  padding: 0.8rem 1.5rem;
   background-color: var(--primary);
   color: var(--background);
   border: none;
   border-radius: 8px;
   font-weight: bold;
-  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 12px rgba(30, 206, 154, 0.3);
-  font-family: var(--font-body);
 }
 
 .run-btn:hover {
   background-color: var(--primary-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(30, 206, 154, 0.4);
+  transform: translateY(-2px);
 }
 
-.run-btn:active {
-  transform: translateY(-1px);
-}
-
-/* --- Output Console Styling --- */
 .output-console {
-  height: 220px !important;
-  width: 100% !important;
-  margin-top: 10px;
+  flex-grow: 1; /* Fill remaining space */
+  width: 100%;
   padding: 1rem;
-  font-size: 0.95rem;
   font-family: var(--font-code);
-  color: var(--text);
   background-color: rgba(31, 31, 31, 0.8);
-  border: 1px solid rgba(241, 242, 246, 0.15);
+  border: none;
+  border-top: 1px solid rgba(241, 242, 246, 0.15);
   border-left: 4px solid var(--primary);
-  border-radius: 8px;
-  height: 200px;
+  color: var(--text);
   resize: none;
-  overflow-y: auto;
-  white-space: pre-wrap;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
-/* When hovered, give it a subtle teal glow */
-.output-console:hover {
-  box-shadow: inset 0 0 12px rgba(30, 206, 154, 0.25);
-  border-left-color: var(--primary-hover);
-}
-
-/* Focused state – glowing teal border */
-.output-console:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--focus-glow-alpha);
-}
-
-/* Custom scrollbar styling */
-.output-console::-webkit-scrollbar {
-  width: 8px;
-}
-
-.output-console::-webkit-scrollbar-thumb {
-  background-color: var(--primary);
-  border-radius: 4px;
-}
-
-.output-console::-webkit-scrollbar-thumb:hover {
-  background-color: var(--primary-hover);
-}
+.output-console:focus { outline: none; }

@@ -3,27 +3,26 @@ import http from 'http';
 import { Server } from 'socket.io';
 import path from 'path';
 import history from 'connect-history-api-fallback';
-import { version } from 'os';
 import axios from 'axios';
 
 const app = express();
 const server = http.createServer(app);
 
-const url = `https://co-code-real-time-collaborative-ide.onrender.com`;
-const interval = 30000;
+// const url = `https://co-code-real-time-collaborative-ide.onrender.com`;
+// const interval = 30000;
 
-function reloadWebsite() {
-  axios
-    .get(url)
-    .then((response) => {
-      console.log("website reloded");
-    })
-    .catch((error) => {
-      console.error(`Error : ${error.message}`);
-    });
-}
+// function reloadWebsite() {
+//   axios
+//     .get(url)
+//     .then((response) => {
+//       console.log("website reloded");
+//     })
+//     .catch((error) => {
+//       console.error(`Error : ${error.message}`);
+//     });
+// }
 
-setInterval(reloadWebsite, interval);
+// setInterval(reloadWebsite, interval);
 
 const io = new Server(server, {
   cors: { origin: "*" },
@@ -95,6 +94,13 @@ io.on("connection", (socket) => {
     }
   })
 
+  // --- NEW CHAT FEATURE ---
+  socket.on("sendMessage", ({ roomId, message, userName, time }) => {
+     // Broadcast to everyone else in the room
+     socket.to(roomId).emit("receiveMessage", { message, userName, time });
+  });
+  // ------------------------
+
   socket.on("disconnect", () => {
     if (currentRoom && currentUser) {
       rooms.get(currentRoom).delete(currentUser);
@@ -108,8 +114,10 @@ const __dirname = path.resolve();
 
 app.use(history());
 
-app.use(express.static(path.join(__dirname, "frontend", "dist")));
+app.use(express.static(path.join(__dirname, "frontend", "dist", "index.html")));
 
 const port = process.env.PORT || 5000;
+
+
 
 server.listen(port, () => console.log("Server running on port", port));
