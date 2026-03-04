@@ -115,7 +115,7 @@ This project is open source. Feel free to use and modify it.
 
 ---
 
-## 👤 Author
+## Author
 
 **Anuj Prakash Dixit**  
 GitHub: [@AnujPrakashDixit](https://github.com/AnujPrakashDixit)
